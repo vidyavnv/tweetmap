@@ -14,6 +14,6 @@ es = Elasticsearch(
     verify_certs=True,
     connection_class=RequestsHttpConnection
 )
-# print(es.info())
-
+print(es.info())
+# es = Elasticsearch()
 gmaps = googlemaps.Client(key=GMAP_KEY)

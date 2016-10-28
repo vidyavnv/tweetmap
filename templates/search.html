@@ -4,6 +4,8 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <title>Tweet Map - Welcome</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -67,13 +69,21 @@
             zoom: 2,
             center: uluru
           });
-          // for (i = 0; i < locations.length; i++) {  
-          //   marker = new google.maps.Marker({
-          //   position: new google.maps.LatLng(locations[i][0], locations[i][1]),
-          //   map: map
-          //   });
-          // }
-    }
+          
+          google.maps.event.addListener(map, "click", function (event) {
+            // clearMarkers();
+            latitude = event.latLng.lat();
+            longitude = event.latLng.lng();
+                $.post("/droptweets/"+latitude+','+longitude, function(data){
+                    console.log('success')
+                });
+                var marker = new google.maps.Marker({
+                            position: {lat: latitude, lng: longitude},
+                            map: map
+                        })
+                        markers.push(marker)
+            });
+}
   </script>
   <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoX_oThVNmAhpb0QWEtCuXYvqvPWeLrsc&callback=initMap">
