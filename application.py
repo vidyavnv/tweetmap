@@ -24,9 +24,9 @@ def category():
 		coords = []
 		for data in es_data['hits']['hits']:
 			if len(data['_source']['coordinates']) > 0:
-				geo_data = data['_source']['coordinates']['location'].split(',')
-				lat = float(geo_data[0])
-				lng = float(geo_data[1])
+				geo_data = data['_source']['coordinates'][0]['geometry']['location']
+				lat = geo_data['lat']
+				lng = geo_data['lng']
 				coords.append([lat, lng])
 		return render_template("twittmap.html",
 	                           coords=json.dumps(coords),
