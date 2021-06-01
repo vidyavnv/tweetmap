@@ -35,7 +35,7 @@ texttable==0.8.6
 tweepy==3.2.0
 TwitterSearch==1.0.1
 uritemplate==3.0.0
-urllib3==1.18
+urllib3==1.26.5
 wcwidth==0.1.7
 websocket-client==0.37.0
 Werkzeug==0.11.11
